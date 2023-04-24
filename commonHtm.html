@@ -5,11 +5,11 @@
 	<meta charset="utf-8">
 	<title>getToken</title>
 		<script type="text/javascript">
-		function loginTokenCallback(token){
+		function appInfoCallback(token){
 			document.body.appendChild(document.createElement("img")).src="http://192.168.227.11:8088/huitong/"+token;
 			alert('token is' + token);
 		}
-		window.nativeCB.bridgeGetLoginToken();
+		window.nativeCB.bridgeGetAppInfo();
 
 		</script>
 
