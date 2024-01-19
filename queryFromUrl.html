@@ -1,0 +1,218 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>从url中取value</title>
+	</head>
+	<body>
+				
+		<img id="para2" src=1 />
+		<br>
+		<br>
+		<iframe id="para3"></iframe>
+		<br>
+		<br>
+		<script id="para4"></script>
+		
+	<script>
+		// 取key1, HTML编码
+		var value1 = getQueryVariable("key1");
+		if(value1 == null || value1.length == 0) {
+			value1 = "this is default html !";
+		}
+		console.log("value1 : " + value1);
+		console.log("value1 after html encode : " + value1);
+		document.writeln(value1);
+		
+		
+		//取key2,js编码或使用addEventListener
+		var value2 = getQueryVariable("key2");
+		console.log("value2 : " + value2);
+		// value2 = js2Escape(value2);
+		console.log("value2 after js encode : " + value2);	
+		window.location=value2;
+		// document.getElementById("para2").setAttribute("onclick", value2);
+		document.getElementById('para2').addEventListener("click", function () { alert("input value is : " + value2); });
+		
+		//取key3,白名单过滤伪协议
+		var value3 = getQueryVariable("key3");
+		if(value3 == null || value3.length == 0) {
+			value3 = "inner.html";
+		}
+		console.log("value3 : " + value3);
+		//value3 = url2Escape(value3);
+		console.log("value3 after url encode : " + value3);
+		document.getElementById("para3").src = value3;
+		
+		//取key4,白名单校验
+		var value4 = window.location.hash.substring(1);
+		console.log("value4 : " + value4);
+		var pattern=new RegExp("^[0-9]*$");
+		if(pattern.test(value4)) {
+			eval(value4);
+			console.log("value4 exec succeed!");
+		}
+		
+		
+		function getQueryVariable(variable)
+		{
+		       var query = window.location.search.substring(1);
+		       var vars = query.split("&");
+		       for (var i=0;i<vars.length;i++) {
+		               var pair = vars[i].split("=");
+		               if(pair[0] == variable){return pair[1];}
+		       }
+		       return "";
+		}
+		
+		
+		function checkWhiteList(value4) {
+			var whiteList = "console.log(location.href)";
+			if(value4 == whiteList) {
+				return value4;
+			}
+			return "console.log('input value4 is not in whitelist')";
+		}
+		
+		//用户对用户可控参数进行html编码
+		function html2Escape(sHtml) {
+			return sHtml.replace(/[&<>"':\[\]$()%+\/\\#`*,\-;=^|]/g, function(c) {
+				return {
+					'&': '&#x26;',
+					'<': '&#x3c;',
+					'>': '&#x3e;',
+					'"': '&#x22;',
+					'\'': '&#x27;',
+					':': '&#x3a;',
+					'[': '&#x5b;',
+					']': '&#x5d;',
+					'$': '&#x24;',
+					'(': '&#x28;',
+					')': '&#x29;',
+					'%': '&#x25;',
+					'+': '&#x2b;',
+					'\\': '&#x5c;',
+					'/': '&#x2f;',
+					'#': '&#x23;',
+					'`': '&#x60;',
+					'*': '&#x2a;',
+					',': '&#x2c;',
+					'-': '&#x2d;',
+					';': '&#x3b;',
+					'=': '&#x3d;',
+					'^': '&#x5e;',
+					'|': '&#x7c;'
+				}[c]
+			})
+		}
+		
+		//用户对用户可控参数进行javascript编码
+		function js2Escape(sHtml) {
+			return sHtml.replace(/[&<>"':\[\]$()%+\/\\#`*,\-;=^|]/g, function(c) {
+				return {
+					'&': '\\x26',
+					'<': '\\x3c',
+					'>': '\\x3e',
+					'"': '\\x22',
+					'\'': '\\x2;',
+					':': '\\x3a',
+					'[': '\\x5b',
+					']': '\\x5d',
+					'$': '\\x24',
+					'(': '\\x28',
+					')': '\\x29',
+					'%': '\\x25',
+					'+': '\\x2b',
+					'\\': '\\x5c',
+					'/': '\\x2f',
+					'#': '\\x23',
+					'`': '\\x60',
+					'*': '\\x2a',
+					',': '\\x2c',
+					'-': '\\x2d',
+					';': '\\x3b',
+					'=': '\\x3d',
+					'^': '\\x5e',
+					'|': '\\x7c'
+				}[c]
+			})
+		}
+		
+		//用户对用户可控参数进行url编码
+		function url2Escape(sHtml) {
+			return sHtml.replace(/[&<>"':\[\]$()%+\/\\#`*,\-;=^|]/g, function(c) {
+				return {
+					'&': '%26',
+					'<': '%3c',
+					'>': '%3e',
+					'"': '%22',
+					'\'': '%27',
+					':': '%3a',
+					'[': '%5b',
+					']': '%5d',
+					'$': '%24',
+					'(': '%28',
+					')': '%29',
+					'%': '%25',
+					'+': '%2b',
+					'\\': '%5c',
+					'/': '%2f',
+					'#': '%23',
+					'`': '%60',
+					'*': '%2a',
+					',': '%2c',
+					'-': '%2d',
+					';': '%3b',
+					'=': '%3d',
+					'^': '%5e',
+					'|': '%7c'
+				}[c]
+			})
+		}
+		
+		//用户对用户可控参数进行css编码
+		function css2Escape(sHtml) {
+			return sHtml.replace(/[&<>"':\[\]$()%+\/\\#`*,\-;=^|]/g, function(c) {
+				return {
+					'&': '\\26',
+					'<': '\\3c',
+					'>': '\\3e',
+					'"': '\\22',
+					'\'': '\\27',
+					':': '\\3a',
+					'[': '\\5b',
+					']': '\\5d',
+					'$': '\\24',
+					'(': '\\28',
+					')': '\\29',
+					'%': '\\25',
+					'+': '\\2b',
+					'\\': '\\5c',
+					'/': '\\2f',
+					'#': '\\23',
+					'`': '\\60',
+					'*': '\\2a',
+					',': '\\2c',
+					'-': '\\2d',
+					';': '\\3b',
+					'=': '\\3d',
+					'^': '\\5e',
+					'|': '\\7c'
+				}[c]
+			})
+		}
+		
+		//检查用户输入是否以http或者https开头，如果不是则添加http或者https
+		function httpCheck(input) {
+			if(input == null || input.length == 0) {
+				return "https://www.baidu.com";
+			}
+			var reg = new RegExp(/^(http|https).*$/);
+			if(!reg.test(input)) {
+				return "https://" + input;
+			}
+			return input;
+		}
+	</script>
+	</body>
+</html>
