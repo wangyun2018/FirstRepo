@@ -35,14 +35,14 @@
 		// document.getElementById('para2').addEventListener("click", function () { alert("input value is : " + value2); });
 		
 		// //取key3,白名单过滤伪协议
-		// var value3 = getQueryVariable("key3");
-		// if(value3 == null || value3.length == 0) {
-		// 	value3 = "inner.html";
-		// }
-		// console.log("value3 : " + value3);
-		// //value3 = url2Escape(value3);
-		// console.log("value3 after url encode : " + value3);
-		// document.getElementById("para3").src = value3;
+		var value3 = getQueryVariable("key3");
+		if(value3 == null || value3.length == 0) {
+			value3 = "inner.html";
+		}
+		console.log("value3 : " + value3);
+		//value3 = url2Escape(value3);
+		console.log("value3 after url encode : " + value3);
+		document.getElementById("para3").src = value3;
 		
 		// //取key4,白名单校验
 		// var value4 = window.location.hash.substring(1);
