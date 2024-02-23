@@ -15,26 +15,25 @@
 		<script id="para4"></script>
 		
 	<script>
-		// // 取key1, HTML编码
-		// var value1 = getQueryVariable("key1");
-		// if(value1 == null || value1.length == 0) {
-		// 	value1 = "this is default html !";
-		// }
-		// console.log("value1 : " + value1);
-		// console.log("value1 after html encode : " + value1);
-		// document.writeln(value1);
+		// 取key1, HTML编码
+		var value1 = getQueryVariable("key1");
+		if(value1 == null || value1.length == 0) {
+			value1 = "this is default html !";
+		}
+		console.log("value1 : " + value1);
+		console.log("value1 after html encode : " + value1);
+		document.writeln(value1);
 		
 		
 		//取key2,js编码或使用addEventListener
-		// var value2 = getQueryVariable("key2");
-		// console.log("value2 : " + value2);
+		var value2 = getQueryVariable("key2");
+		console.log("value2 : " + value2);
 		// value2 = js2Escape(value2);
-		// console.log("value2 after js encode : " + value2);	
-		// window.location=value2;
+		console.log("value2 after js encode : " + value2);	
 		// document.getElementById("para2").setAttribute("onclick", value2);
-		// document.getElementById('para2').addEventListener("click", function () { alert("input value is : " + value2); });
+		document.getElementById('para2').addEventListener("click", function () { alert("input value is : " + value2); });
 		
-		// //取key3,白名单过滤伪协议
+		//取key3,白名单过滤伪协议
 		var value3 = getQueryVariable("key3");
 		if(value3 == null || value3.length == 0) {
 			value3 = "inner.html";
@@ -44,14 +43,14 @@
 		console.log("value3 after url encode : " + value3);
 		document.getElementById("para3").src = value3;
 		
-		// //取key4,白名单校验
-		// var value4 = window.location.hash.substring(1);
-		// console.log("value4 : " + value4);
-		// var pattern=new RegExp("^[0-9]*$");
-		// if(pattern.test(value4)) {
-		// 	eval(value4);
-		// 	console.log("value4 exec succeed!");
-		// }
+		//取key4,白名单校验
+		var value4 = window.location.hash.substring(1);
+		console.log("value4 : " + value4);
+		var pattern=new RegExp("^[0-9]*$");
+		if(pattern.test(value4)) {
+			eval(value4);
+			console.log("value4 exec succeed!");
+		}
 		
 		
 		function getQueryVariable(variable)
