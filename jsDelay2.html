@@ -6,9 +6,11 @@
         <title></title>
     </head>
     <body>
+	<p id="demo"></p>p
         <script>
-	var result = window.objName.getToken();
-	
+	var str = window.objName.getToken();
+	document.getElementById("demo").innerHTML = str;
+        console.info('ArkTS Hello World! :' + str);
 	</script>
     </body>
 </html>
