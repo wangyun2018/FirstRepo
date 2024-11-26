@@ -1,15 +1,26 @@
+<!-- index.html -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name='viewport' content='width=device-width, target-densitydpi=device-dpi, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no' />
-        <title></title>
-    </head>
-    <body>
-        <script>
-	var test=function (){console.log(window.objName.getToken());};
-	setTimeout(test,40);
-	document.location.href="https://www.baidu.com";
-	</script>
-    </body>
+<html>
+<body>
+<button type="button" onclick="start()">Click Me!</button>
+<p id="demo"></p>
+<script>
+    function test() {
+        location.href = "https://www.baidu.com:0"
+    }
+
+    function start(){
+        test();
+        setInterval(callArkTS, 50);
+    }
+
+    function callArkTS() {
+        let str = window.testObjName.test('hello world');
+        document.getElementById("demo").innerHTML = str;
+        console.info('ArkTS Hello World! :' + str);
+    }
+    
+    // callArkTS()
+</script>
+</body>
 </html>
